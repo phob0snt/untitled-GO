@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>OAuth.DotNetCore</id>
+    <version>3.0.1</version>
+    <authors>Robert Hargreaves</authors>
+    <owners>Robert Hargreaves</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/rhargreaves/oauth-dotnetcore/blob/master/LICENSE</licenseUrl>
+    <projectUrl>http://github.com/rhargreaves/oauth-dotnetcore</projectUrl>
+    <iconUrl>http://apitize.com.s3.amazonaws.com/logo_oauth.png</iconUrl>
+    <description>An implementation of OAuth 1.0a for .NET Core based on Daniel Crenna's vaulted OAuth library</description>
+    <tags>oauth dotnetcore</tags>
+    <repository type="git" url="http://github.com/rhargreaves/oauth-dotnetcore" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.0" />
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" targetFramework=".NETFramework4.0" />
+    </frameworkAssemblies>
+  </metadata>
+</package>
