@@ -1,18 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class UpgradeComponent : MonoBehaviour
+public enum ItemRarity
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    Common,
+    Rare,
+    HyperRare,
+    Legendary
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public enum ComponentType
+{
+    Cloth,
+    Toolkit,
+    StreamConductor,
+    StreamGenerator,
+    ForceFieldSensor,
+    WarpChip
+}
+
+[CreateAssetMenu(menuName = "Items/UpgradeComponent")]
+public class UpgradeComponent : Item
+{
+    public override ItemType Type => ItemType.UpgradeComponent;
+
+    public ItemRarity Rarity => _rarity;
+    [SerializeField] private ItemRarity _rarity;
+    public ComponentType ComponentType => _componentType;
+    [SerializeField] ComponentType _componentType;
 }

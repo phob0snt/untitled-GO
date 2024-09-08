@@ -14,20 +14,16 @@ public class Character : MonoBehaviour
 
     private PlayerStats _playerStats;
     
-    private Item _hairSlot;
-    private ShoesItem _shoesSlot;
-    private PantsItem _pantsSlot;
-    private OuterwearItem _outerwearSlot;
-    private RingItem _ringSlot;
+    public Equipment Equipment { get; private set; }
 
     private void Awake()
     {
         UpdatePlayerStats();
     }
 
-    public bool CheckItemEquipment(Item item)
+    public bool ItemEquipped(InventoryItem<Item> item)
     {
-        if (item == _shoesSlot || item == _pantsSlot || item == _outerwearSlot || item == _ringSlot)
+        if (item.Item == Equipment.Shoes.Item || item.Item == Equipment.Pants.Item || item.Item == Equipment.Outerwear.Item || item.Item == Equipment.Ring.Item)
             return true;
         else return false;
     }
@@ -36,42 +32,57 @@ public class Character : MonoBehaviour
     {
         _playerStats = new PlayerStats
         (
-            300 + (_shoesSlot?.StreamCapacityBonus ?? 0) + (_pantsSlot?.StreamCapacityBonus ?? 0) + (_outerwearSlot?.StreamCapacityBonus ?? 0),
-            1200 + ((_shoesSlot?.MaxHPBonus ?? 0)) + (_pantsSlot?.MaxHPBonus ?? 0) + (_outerwearSlot?.MaxHPBonus ?? 0),
-            0 + (_shoesSlot?.EvasionChance ?? 0),
-            0 + (_pantsSlot?.StreamRegenBonus ?? 0),
-            0 + (_outerwearSlot?.BarrierDurability ?? 0),
-            0 + (_ringSlot?.Damage ?? 0),
-            0 + (_ringSlot?.AttackRate ?? 0),
-            0 + (_ringSlot?.AttackStreamCost ?? 0)
+            300 + (Equipment.Shoes.Item?.StreamCapacityBonus ?? 0) + (Equipment.Pants.Item?.StreamCapacityBonus ?? 0) + (Equipment.Outerwear.Item?.StreamCapacityBonus ?? 0),
+            1200 + (Equipment.Shoes.Item?.MaxHPBonus ?? 0) + (Equipment.Pants.Item?.MaxHPBonus ?? 0) + (Equipment.Outerwear.Item?.MaxHPBonus ?? 0),
+            0 + (Equipment.Shoes.Item?.EvasionChance ?? 0),
+            0 + (Equipment.Pants.Item?.StreamRegenBonus ?? 0),
+            0 + (Equipment.Outerwear.Item?.BarrierDurability ?? 0),
+            0 + (Equipment.Ring.Item?.Damage ?? 0),
+            0 + (Equipment.Ring.Item?.AttackRate ?? 0),
+            0 + (Equipment.Ring.Item?.AttackStreamCost ?? 0)
         );
+
         _viewManager.GetView<InventoryView>().CharacterCustomizeTab.UpdatePlayerStats(_playerStats);
         _gameManager.UpdatePlayerStats(_playerStats);
     }
 
-    public void Equip(Item item)
+    public void Equip(InventoryItem<Item> item)
     {
-        if (item is not IEquippable) return;
-        switch (item.Type)
+        if (item.Item is not IEquippable) return;
+        Debug.Log("is equippable");
+        switch (item.Item)
         {
-            case ItemType.Shoes:
-                _shoesSlot = item as ShoesItem;
+            case ShoesItem shoes:
+                Equipment.Shoes.Item = shoes;
+                Equipment.Shoes.Level = item.Level;
+                Equipment.Shoes.Amount = item.Amount;
                 break;
-            case ItemType.Pants:
-                _pantsSlot = item as PantsItem;
+            case PantsItem pants:
+                Equipment.Pants.Item = pants;
+                Equipment.Pants.Level = item.Level;
+                Equipment.Pants.Amount = item.Amount;
                 break;
-            case ItemType.Outerwear:
-                _outerwearSlot = item as OuterwearItem;
+            case OuterwearItem outer:
+                Equipment.Outerwear.Item = outer;
+                Equipment.Outerwear.Level = item.Level;
+                Equipment.Outerwear.Amount = item.Amount;
                 break;
-            case ItemType.Ring:
-                _ringSlot = item as RingItem;
+            case RingItem ring:
+                Equipment.Ring.Item = ring;
+                Equipment.Ring.Level = item.Level;
+                Equipment.Ring.Amount = item.Amount;
                 break;
         }
         UpdatePlayerStats();
         DisplayItem(item);
     }
 
-    private void DisplayItem(Item item)
+    public void SetEquipment(Equipment equipment)
+    {
+        Equipment = equipment;
+    }
+
+    private void DisplayItem(InventoryItem<Item> item)
     {
         _viewManager.GetView<InventoryView>().CharacterCustomizeTab.DisplayEquippedItem(item);
     }
@@ -86,9 +97,9 @@ public struct PlayerStats
     public int BarrierDurability { get; private set; }
     public int Damage { get; private set; }
     public float AttackRate { get; private set; }
-    public float AttackStreamCost { get; private set; }
+    public int AttackStreamCost { get; private set; }
 
-    public PlayerStats(int streamCapacity, int hp, int evasionChance, float streamRegen, int barrierDurability, int damage, float attackRate, float attackStreamCost)
+    public PlayerStats(int streamCapacity, int hp, int evasionChance, float streamRegen, int barrierDurability, int damage, float attackRate, int attackStreamCost)
     {
         StreamCapacity = streamCapacity;
         HP = hp;

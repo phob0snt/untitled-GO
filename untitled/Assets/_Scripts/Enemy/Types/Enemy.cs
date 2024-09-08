@@ -26,6 +26,7 @@ public abstract class Enemy : MonoBehaviour
         }
         else
             HP -= damage;
+        Debug.Log("APPLIED " + HP);
     }
 
     private void Die()

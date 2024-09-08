@@ -6,12 +6,13 @@ using Zenject;
 public class CharacterCustomizeTab : Tab
 {
     [Inject] private readonly Character _character;
+    [Inject] private readonly ItemUIPool _itemUIPool;
 
     [SerializeField] private Transform _contentLabel;
     [SerializeField] private GameObject _itemUIPrefab;
     [SerializeField] private Button _equipItem;
     private PlayerStats _prevStats;
-    private Item _selectedItem;
+    private InventoryItem<Item> _selectedItem;
 
     [SerializeField] private TMP_Text _streamCapacity;
     [SerializeField] private TMP_Text _hp;
@@ -25,53 +26,63 @@ public class CharacterCustomizeTab : Tab
     [SerializeField] private ContentRectAutoExpand _rectExpand;
     public override void Initialize()
     {
-        foreach (var item in _character.Inventory.Items)
-        {
-            if (item is IEquippable)
-                DisplayStorageItem(item);
-        }
+        UpdateItemsDisplay();
     }
 
     private void OnEnable()
     {
+        UpdateItemsDisplay();
         _equipItem.onClick.AddListener(EquipItem);
+        Inventory.OnInventoryUpdate.AddListener(UpdateItemsDisplay);
     }
 
-    private void DisplayStorageItem(Item item)
+    private void OnDisable()
     {
-        ItemUI itemUI = Instantiate(_itemUIPrefab, _contentLabel).GetComponent<ItemUI>();
-        itemUI.SetItem(item);
+        _equipItem.onClick.RemoveListener(EquipItem);
+        Inventory.OnInventoryUpdate.RemoveListener(UpdateItemsDisplay);
+    }
+
+    private void UpdateItemsDisplay()
+    {
+        _itemUIPool.ClearAllItems(_contentLabel);
+        foreach (var item in _character.Inventory.Items)
+        {
+            if (item.Item is IEquippable)
+                DisplayStorageItem(item);
+        }
+    }
+
+    private void DisplayStorageItem(InventoryItem<Item> item)
+    {
+        ItemUI itemUI = _itemUIPool.GetItemUI(_contentLabel);
+        itemUI.SetItem(item.Item);
         itemUI.OnClick.AddListener(() => SelectItem(item));
         _rectExpand.UpdateRectSize();
     }
 
-    private void SelectItem(Item item)
+    private void SelectItem(InventoryItem<Item> item)
     {
         _selectedItem = item;
         UpdatePlayerStats(_prevStats);
-        if (_character.CheckItemEquipment(item)) return;
-        switch (item.Type)
+        if (_character.ItemEquipped(item)) return;
+        switch (item.Item)
         {
-            case ItemType.Shoes:
-                ShoesItem shoes = item as ShoesItem;
+            case ShoesItem shoes:
                 _streamCapacity.text += $" + {shoes.StreamCapacityBonus}";
                 _hp.text += $" + {shoes.MaxHPBonus}";
                 _evasionChance.text += $" + {shoes.EvasionChance} %";
                 break;
-            case ItemType.Pants:
-                PantsItem pants = item as PantsItem;
+            case PantsItem pants:
                 _streamCapacity.text += $" + {pants.StreamCapacityBonus}";
                 _hp.text += $" + {pants.MaxHPBonus}";
                 _streamRegen.text += $" + {pants.StreamRegenBonus}";
                 break;
-            case ItemType.Outerwear:
-                OuterwearItem outerwear = item as OuterwearItem;
+            case OuterwearItem outerwear:
                 _streamCapacity.text += $" + {outerwear.StreamCapacityBonus}";
                 _hp.text += $" + {outerwear.MaxHPBonus}";
                 _barrierDurability.text += $" + {outerwear.BarrierDurability}";
                 break;
-            case ItemType.Ring:
-                RingItem ring = item as RingItem;
+            case RingItem ring:
                 _damage.text += $" + {ring.Damage}";
                 _attackRate.text += $" + {ring.AttackRate}";
                 _attackStreamCost.text += $" + {ring.AttackStreamCost}";
@@ -82,10 +93,13 @@ public class CharacterCustomizeTab : Tab
     private void EquipItem()
     {
         if (_selectedItem != null )
+        {
+            Debug.Log("Equipping");
             _character.Equip(_selectedItem);
+        }
     }
 
-    public void DisplayEquippedItem(Item item)
+    public void DisplayEquippedItem(InventoryItem<Item> item)
     {
         // отображение предметов одежды
     }

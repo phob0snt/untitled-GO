@@ -6,9 +6,13 @@ public class FightManager : MonoBehaviour
 {
     [Inject] private readonly GameManager _gameManager;
     [Inject] private readonly IEnemyFactory _enemyFactory;
-    [HideInInspector] public UnityEvent OnSceneReady = new();
+    [Inject] private readonly Player _player;
 
-    private Enemy _currentEnemy;
+    [HideInInspector] public UnityEvent OnSceneReady = new();
+    [HideInInspector] public UnityEvent OnAttackPerformed = new();
+    [HideInInspector] public UnityEvent OnBarrierSet = new();
+
+    public Enemy CurrentEnemy { get; private set; }
 
     public BattleData CurrentBattleData => _gameManager.CurrentBattleData;
 
@@ -24,12 +28,22 @@ public class FightManager : MonoBehaviour
 
     private void ConfigureScene()
     {
-        _currentEnemy = _enemyFactory.CreateEnemy(CurrentBattleData.EnemyData);
+        CurrentEnemy = _enemyFactory.CreateEnemy(CurrentBattleData.EnemyData);
 
         //switch (CurrentBattleData.EnemyData.Type)
         //{
         //    case EnemyType.Base:
         //        break;
         //}
+    }
+
+    private void PerformAttack()
+    {
+        if (_player.TryToAttack())
+        {
+            CurrentEnemy.ApplyDamage(_gameManager.PlayerStats.Damage);
+            OnAttackPerformed.Invoke();
+            Debug.Log("ATTACK");
+        }
     }
 }

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: f0bad309b041c17458dc2126d7813222
+  m_SerializeEntries:
+  - m_GUID: 16f04ee0ef83a57458c69eb1d4330419
+    m_Address: Assets/ScriptableObjects/Items/Equipment/StarterOuterwear.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea83fc6c0a57a6249931c92ee5233fb9
+    m_Address: Assets/ScriptableObjects/Items/Equipment/StarterPants.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0c47f1ca030293d4eb62998e33e01c2d
+    m_Address: Assets/ScriptableObjects/Items/Equipment/StarterShoes.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f36c98de6299f6343a0f4030baf6ecca
+    m_Address: Assets/ScriptableObjects/Items/Equipment/StarterRing.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: b1f582c070a49df4f9bed89ab6addd05, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 1c558869508725945822b4db1202e80c, type: 2}
+    - {fileID: 11400000, guid: 3d6bcc3679144fd48bd15347b3b03825, type: 2}

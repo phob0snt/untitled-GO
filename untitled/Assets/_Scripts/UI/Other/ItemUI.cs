@@ -12,4 +12,5 @@ public class ItemUI : MonoBehaviour
     {
         _itemImage.sprite = item.Icon;
     }
+
 }

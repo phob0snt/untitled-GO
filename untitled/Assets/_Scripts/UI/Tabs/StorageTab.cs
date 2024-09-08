@@ -3,7 +3,9 @@ using Zenject;
 
 public class StorageTab : Tab
 {
+    [Inject] private readonly ItemUIPool _itemUIPool;
     [Inject] private readonly Character _character;
+
     [SerializeField] private Transform _contentLabel;
     [SerializeField] private GameObject _itemUIPrefab;
 
@@ -11,15 +13,32 @@ public class StorageTab : Tab
 
     public override void Initialize()
     {
-        foreach(var item in _character.Inventory.Items)
+        UpdateItemsDisplay();
+    }
+
+    private void OnEnable()
+    {
+        UpdateItemsDisplay();
+        Inventory.OnInventoryUpdate.AddListener(UpdateItemsDisplay);
+    }
+
+    private void OnDisable()
+    {
+        Inventory.OnInventoryUpdate.RemoveListener(UpdateItemsDisplay);
+    }
+
+    private void UpdateItemsDisplay()
+    {
+        _itemUIPool.ClearAllItems(_contentLabel);
+        foreach (var item in _character.Inventory.Items)
         {
-            DisplayItem(item);
+            DisplayStorageItem(item.Item);
         }
     }
 
-    private void DisplayItem(Item item)
+    private void DisplayStorageItem(Item item)
     {
-        ItemUI itemUI = Instantiate(_itemUIPrefab, _contentLabel).GetComponent<ItemUI>();
+        ItemUI itemUI = _itemUIPool.GetItemUI(_contentLabel);
         itemUI.SetItem(item);
         _rectExpand.UpdateRectSize();
     }

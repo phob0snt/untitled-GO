@@ -1,16 +1,18 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Items/ItemData")]
-public class Item : ScriptableObject
+public abstract class Item : ScriptableObject
 {
-    public ItemType Type => _type;
-    [SerializeField] private ItemType _type;
+    public abstract ItemType Type { get; }
     public string Name => _name;
     [SerializeField] private string _name;
     public string Description => _description;
     [SerializeField] private string _description;
     public Sprite Icon => _icon;
     [SerializeField] private Sprite _icon;
+    public virtual void Initialize(int level, int amount)
+    {
+
+    }
 }
 
 public enum ItemType
@@ -19,7 +21,8 @@ public enum ItemType
     Pants,
     Outerwear,
     Ring,
-    Other
+    Hair,
+    UpgradeComponent
 }
 
 public enum ClothSet
