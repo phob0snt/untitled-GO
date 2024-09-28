@@ -12,6 +12,8 @@ public class FightView : View
     [SerializeField] private TMP_Text _streamText;
     [SerializeField] private TMP_Text _barrierText;
     [SerializeField] private Image _enemyHPBar;
+    [SerializeField] private Image _ultimateEnergyBar;
+
 
     public override void Init()
     {
@@ -23,7 +25,8 @@ public class FightView : View
         _player.OnHPChange.AddListener(ShowHP);
         _player.OnBarrierChange.AddListener(ShowBarrier);
         _player.OnStreamChange.AddListener(ShowStream);
-        _fightManager.OnAttackPerformed.AddListener(ShowEnemyHP);
+        _player.OnEnegryChange.AddListener(ShowUltimateEnergy);
+        _fightManager.OnEnemyHPChanged.AddListener(ShowEnemyHP);
     }
 
     private void OnDisable()
@@ -31,7 +34,8 @@ public class FightView : View
         _player.OnHPChange.RemoveListener(ShowHP);
         _player.OnBarrierChange.RemoveListener(ShowBarrier);
         _player.OnStreamChange.RemoveListener(ShowStream);
-        _fightManager.OnAttackPerformed.RemoveListener(ShowEnemyHP);
+        _player.OnEnegryChange.RemoveAllListeners();
+        _fightManager.OnEnemyHPChanged.RemoveListener(ShowEnemyHP);
     }
     private void ShowHP(int hp)
     {
@@ -47,10 +51,14 @@ public class FightView : View
         _barrierText.text = barrier.ToString();
     }
 
-    private void ShowEnemyHP()
+    private void ShowEnemyHP(int hp)
     {
         int enemyMaxHp = _fightManager.CurrentBattleData.EnemyData.HP;
-        _enemyHPBar.fillAmount = (float)_fightManager.CurrentEnemy.HP / (float)enemyMaxHp;
+        _enemyHPBar.fillAmount = (float)hp / (float)enemyMaxHp;
     }
 
+    private void ShowUltimateEnergy(int energy)
+    {
+        _ultimateEnergyBar.fillAmount = (float)energy / (float)_player.EnergyForUltimate;
+    }
 }

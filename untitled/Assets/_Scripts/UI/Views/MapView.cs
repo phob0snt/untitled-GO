@@ -8,6 +8,7 @@ public class MapView : View
     [SerializeField] private Button _fightButton;
     [SerializeField] private BattleData _battleData;
 
+
     private void OnEnable()
     {
         _fightButton.onClick.AddListener(() => _gameManager.LoadFightScene(_battleData));

@@ -10,13 +10,13 @@ public class BaseEnemy : Enemy
 
     protected override void Attack()
     {
-        Vector3 shotVector = new Vector3(Random.Range(-0.2f, 0.2f), 0, -1);
-        GameObject bullet = Instantiate(_bulletPrefab.gameObject, _bulletSpawnPoint.position, Quaternion.identity);
-        bullet.GetComponent<Rigidbody>().AddForce(shotVector * _shotStrength, ForceMode.Impulse);
+        //Vector3 shotVector = new (Random.Range(-0.2f, 0.2f), 0, -1);
+        //GameObject bullet = Instantiate(_bulletPrefab.gameObject, _bulletSpawnPoint.position, Quaternion.identity);
+        //bullet.GetComponent<Rigidbody>().AddForce(shotVector * _shotStrength, ForceMode.Impulse);
     }
-    public override void Initialize()
+    public override void Initialize(EnemyData data)
     {
-        base.Initialize();
+        base.Initialize(data);
         StartCoroutine(SprayAttack());
     }
 

@@ -1,6 +1,7 @@
 using UnityEngine;
 using Zenject;
 
+[RequireComponent(typeof(Collider))]
 public abstract class Enemy : MonoBehaviour
 {
     [Inject] private readonly FightManager _fightManager;
@@ -9,9 +10,9 @@ public abstract class Enemy : MonoBehaviour
     private EnemyData _enemyData;
     protected abstract void Attack();
 
-    public virtual void Initialize()
+    public virtual void Initialize(EnemyData data)
     {
-        _enemyData = _fightManager.CurrentBattleData.EnemyData;
+        _enemyData = data;
         HP = _enemyData.HP;
         _fightManager.OnSceneReady.Invoke();
     }
@@ -26,12 +27,12 @@ public abstract class Enemy : MonoBehaviour
         }
         else
             HP -= damage;
-        Debug.Log("APPLIED " + HP);
+        _fightManager.OnEnemyHPChanged.Invoke(HP);
+        Debug.Log("Enemy Damaged " + HP);
     }
 
-    private void Die()
+    protected virtual void Die()
     {
         Debug.Log("DEAD!!!!!");
     }
-
 }

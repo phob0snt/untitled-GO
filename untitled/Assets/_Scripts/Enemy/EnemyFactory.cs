@@ -22,8 +22,8 @@ public class EnemyFactory : MonoBehaviour, IEnemyFactory
             throw new ArgumentException($"No prefab found for enemy type {enemyData.Type}");
         }
 
-        Enemy enemy = _container.InstantiatePrefabForComponent<Enemy>(_currentPrefab);
-        enemy.Initialize();
+        Enemy enemy = _container.InstantiatePrefabForComponent<Enemy>(_currentPrefab, new Vector3(0, 5, 19), Quaternion.identity, transform.root);
+        enemy.Initialize(enemyData);
 
         return enemy;
     }

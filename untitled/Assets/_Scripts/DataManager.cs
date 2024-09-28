@@ -23,7 +23,7 @@ public class DataManager : MonoBehaviour
 
     public void SaveData()
     {
-        InventoryData inventoryData = new InventoryData();
+        PlayerData inventoryData = new PlayerData();
         InventoryItem<OuterwearItem> outer = _character.Equipment.Outerwear;
         InventoryItem<PantsItem> pants = _character.Equipment.Pants;
         InventoryItem<ShoesItem> shoes = _character.Equipment.Shoes;
@@ -54,7 +54,7 @@ public class DataManager : MonoBehaviour
         if (File.Exists(_savePath))
         {
             string json = File.ReadAllText(_savePath);
-            InventoryData inventoryData = JsonUtility.FromJson<InventoryData>(json);
+            PlayerData inventoryData = JsonUtility.FromJson<PlayerData>(json);
             _character.Inventory.Clear();
 
             Equipment equipment = new Equipment();

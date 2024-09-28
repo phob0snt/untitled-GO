@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
-[RequireComponent(typeof(Animator), typeof(PlayerController))]
 public class PlayerStateMachine
 {
     private StateNode _currentState;
@@ -88,6 +86,4 @@ public class PlayerStateMachine
             Transitions.Add(new Transition(to, condition));
         }
     }
-    public IState CurrentState { get; private set; }
-    private Animator _animator;
 }

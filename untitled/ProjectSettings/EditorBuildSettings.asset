@@ -5,11 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/AppScene.unity
+    guid: 3fc8acdd13e6c734bafef6554d6fdbcd
+  - enabled: 1
+    path: Assets/Scenes/FightScene.unity
+    guid: d1394cd98573fad4098e28757738c6ed
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: e3ef5304fc777b44e91160eae7a8ee7b, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: dbb952d81d275b44aabd63a860bdc9b6, type: 2}
     com.unity.addressableassets: {fileID: 11400000, guid: bea159355bbcb9d46b09ae29a4efcfe7, type: 2}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: dfa50d29fc0e69046a75eebe9f0684b2, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 81a506b34407a2245947a575c5efdf89, type: 2}

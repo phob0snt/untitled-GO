@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public UnityEvent OnFightSceneLoaded = new();
+    [HideInInspector] public UnityEvent OnFightSceneLoaded = new();
     public PlayerStats PlayerStats { get; private set; }
     public BattleData CurrentBattleData { get; private set; }
 
