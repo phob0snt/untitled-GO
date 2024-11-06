@@ -12,6 +12,7 @@ public class ItemUIPool : MonoBehaviour
         if (_itemUIPool.Count > 0)
         {
             var itemUI = _itemUIPool.Dequeue();
+            itemUI.OnClick.RemoveAllListeners();
             itemUI.gameObject.SetActive(true);
             itemUI.transform.SetParent(parent);
             return itemUI;

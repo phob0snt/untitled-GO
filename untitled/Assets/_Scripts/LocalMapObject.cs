@@ -1,9 +1,31 @@
+using System;
 using UnityEngine;
 
-public abstract class LocalMapObject : MonoBehaviour
+public enum MapObjectType
 {
-    public virtual void SetPosition(Vector3 pos)
+    Battle,
+
+}
+
+public enum MapObjectRareness
+{
+    Common,
+    Uncommon,
+    Rare,
+    VeryRare,
+    Special
+}
+
+public abstract class LocalMapObject : ScriptableObject
+{
+    protected MapObjectRareness _rareness;
+    public virtual void Initialize()
     {
-        transform.position = pos;
+
+    }
+
+    public virtual void RandomConfiguration()
+    {
+        _rareness = (MapObjectRareness)UnityEngine.Random.Range(0, Enum.GetNames(typeof(MapObjectRareness)).Length);
     }
 }

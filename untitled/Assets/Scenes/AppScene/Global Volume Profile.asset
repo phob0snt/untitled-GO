@@ -30,7 +30,7 @@ MonoBehaviour:
     m_Value: 65472
   tint:
     m_OverrideState: 0
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0
@@ -45,6 +45,34 @@ MonoBehaviour:
     m_Value: {fileID: 0}
     dimension: 1
   dirtIntensity:
+    m_OverrideState: 0
+    m_Value: 0
+--- !u!114 &-891096881119730155
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
+  m_Name: ColorAdjustments
+  m_EditorClassIdentifier: 
+  active: 1
+  postExposure:
+    m_OverrideState: 0
+    m_Value: 1.84
+  contrast:
+    m_OverrideState: 1
+    m_Value: 20
+  colorFilter:
+    m_OverrideState: 1
+    m_Value: {r: 0.8132075, g: 1, b: 0.9554737, a: 1}
+  hueShift:
+    m_OverrideState: 1
+    m_Value: 8
+  saturation:
     m_OverrideState: 0
     m_Value: 0
 --- !u!114 &11400000
@@ -62,6 +90,36 @@ MonoBehaviour:
   components:
   - {fileID: 8694189999044265580}
   - {fileID: -3223056034415314152}
+  - {fileID: 4906401832372155203}
+  - {fileID: -891096881119730155}
+--- !u!114 &4906401832372155203
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
+  m_Name: Vignette
+  m_EditorClassIdentifier: 
+  active: 1
+  color:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  center:
+    m_OverrideState: 0
+    m_Value: {x: 0.5, y: 0.5}
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.2
+  smoothness:
+    m_OverrideState: 1
+    m_Value: 0.4
+  rounded:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &8694189999044265580
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -83,16 +141,16 @@ MonoBehaviour:
     m_Value: 1
   color:
     m_OverrideState: 1
-    m_Value: {r: 0.48429304, g: 0.7023683, b: 0.9596336, a: 1}
+    m_Value: {r: 0.37623408, g: 0.84852797, b: 0.818473, a: 1}
   densityMode:
     m_OverrideState: 1
     m_Value: 0
   startLine:
     m_OverrideState: 1
-    m_Value: 40
+    m_Value: 20
   endLine:
     m_OverrideState: 1
-    m_Value: 120
+    m_Value: 60
   startHeight:
     m_OverrideState: 0
     m_Value: 5
@@ -103,18 +161,18 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0.05
   noiseMode:
-    m_OverrideState: 1
-    m_Value: 0
+    m_OverrideState: 0
+    m_Value: 1
   noiseTexture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
     dimension: 1
   noiseIntensity:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 0.7
   noiseScale:
     m_OverrideState: 0
-    m_Value: 1
+    m_Value: 18.72
   noiseScrollSpeed:
     m_OverrideState: 0
     m_Value: {x: 1, y: 1}

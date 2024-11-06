@@ -14,12 +14,6 @@ public class FightView : View
     [SerializeField] private Image _enemyHPBar;
     [SerializeField] private Image _ultimateEnergyBar;
 
-
-    public override void Init()
-    {
-
-    }
-
     private void OnEnable()
     {
         _player.OnHPChange.AddListener(ShowHP);

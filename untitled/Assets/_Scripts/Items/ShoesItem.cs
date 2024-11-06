@@ -16,11 +16,15 @@ public class ShoesItem : ClothingItem
         CalculateStats();
     }
 
-    private void CalculateStats()
+    protected override void CalculateStats()
     {
-        _currentMaxHPBonus = (int)(_baseMaxHPBonus * Mathf.Pow(1.05f, UpgradeLevel - 1));
-        _currentStreamCapacityBonus = (int)(_baseStreamCapacityBonus * Mathf.Pow(1.05f, UpgradeLevel - 1));
-        _currentEvasionChance = (int)(_baseEvasionChance * Mathf.Pow(1.05f, UpgradeLevel - 1));
+        base.CalculateStats();
+        _currentEvasionChance = EvasionWithLevel(UpgradeLevel);
+    }
+
+    public int EvasionWithLevel(int level)
+    {
+        return (int)(_baseEvasionChance * Mathf.Pow(1.05f, level - 1));
     }
 
     public override void Upgrade()

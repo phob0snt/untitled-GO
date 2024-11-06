@@ -15,18 +15,14 @@ public class FightManager : MonoBehaviour
 
     public BattleData CurrentBattleData => _gameManager.CurrentBattleData;
 
-    private void OnEnable()
+    private void Awake()
     {
-        _gameManager.OnFightSceneLoaded.AddListener(ConfigureScene);
-    }
-
-    private void OnDisable()
-    {
-        _gameManager.OnFightSceneLoaded.RemoveListener(ConfigureScene);
+        ConfigureScene();
     }
 
     private void ConfigureScene()
     {
         CurrentEnemy = _enemyFactory.CreateEnemy(CurrentBattleData.EnemyData);
+        EventManager.Broadcast(Events.FightSceneConfiguredEvent);
     }
 }

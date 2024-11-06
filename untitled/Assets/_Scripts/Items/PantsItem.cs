@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Items/PantsItem")]
@@ -16,11 +17,15 @@ public class PantsItem : ClothingItem
         CalculateStats();
     }
 
-    private void CalculateStats()
+    protected override void CalculateStats()
     {
-        _currentMaxHPBonus = (int)(_baseMaxHPBonus * Mathf.Pow(1.05f, UpgradeLevel - 1));
-        _currentStreamCapacityBonus = (int)(_baseStreamCapacityBonus * Mathf.Pow(1.05f, UpgradeLevel - 1));
-        _currentStreamRegenBonus = _baseStreamRegenBonus * Mathf.Pow(1.05f, UpgradeLevel - 1);
+        base.CalculateStats();
+        _currentStreamRegenBonus = RegenWithLevel(UpgradeLevel);
+    }
+
+    public float RegenWithLevel(int level)
+    {
+        return (float)Math.Round(_baseStreamRegenBonus * Mathf.Pow(1.05f, level - 1), 1);
     }
 
     public override void Upgrade()

@@ -4,10 +4,12 @@ using Zenject;
 
 public class MapView : View
 {
-    [Inject] private GameManager _gameManager;
+    [Inject] private readonly GameManager _gameManager;
+    [Inject] private readonly Character _char;
+
     [SerializeField] private Button _fightButton;
     [SerializeField] private BattleData _battleData;
-
+    
 
     private void OnEnable()
     {
@@ -17,9 +19,5 @@ public class MapView : View
     private void OnDisable()
     {
         _fightButton.onClick.RemoveListener(() => _gameManager.LoadFightScene(_battleData));
-    }
-
-    public override void Init()
-    {
     }
 }

@@ -20,22 +20,98 @@ MonoBehaviour:
   - m_GUID: 16f04ee0ef83a57458c69eb1d4330419
     m_Address: Assets/ScriptableObjects/Items/Equipment/StarterOuterwear.asset
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Items
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ea83fc6c0a57a6249931c92ee5233fb9
     m_Address: Assets/ScriptableObjects/Items/Equipment/StarterPants.asset
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Items
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0c47f1ca030293d4eb62998e33e01c2d
     m_Address: Assets/ScriptableObjects/Items/Equipment/StarterShoes.asset
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Items
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f36c98de6299f6343a0f4030baf6ecca
     m_Address: Assets/ScriptableObjects/Items/Equipment/StarterRing.asset
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2056aa0f965c06241a4d362290120c0b
+    m_Address: Assets/ScriptableObjects
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ea7e13719b48b140908c6a2a39b6960
+    m_Address: Assets/ScriptableObjects/Items
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e25e71ec230bb443bf051fd77fc128c
+    m_Address: Assets/ScriptableObjects/Items/Components
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57d99edbf57694848924566423eb6f2f
+    m_Address: Assets/ScriptableObjects/Items/Equipment
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1eccc415d60c84498f8e8f6014765d1
+    m_Address: Assets/ScriptableObjects/Items/Components/Common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d573ca9575871474689c9bb20f2eae87
+    m_Address: Assets/ScriptableObjects/Items/Components/Common/CommonStreamConductor.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 40b554c042f231c42a7346e9b21ddc01
+    m_Address: Assets/ScriptableObjects/Items/Components/Common/CommonForceFieldSensor.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 31e7d8aa3d8ee124c8981c7cf268c843
+    m_Address: Assets/ScriptableObjects/Items/Components/Common/CommonCloth.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c83e8d44a5142eb4d9fa9fd527f0e165
+    m_Address: Assets/ScriptableObjects/Items/Components/Common/CommonWarpChip.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 92787b5a6d8ccac4e8b301b69b1f4a88
+    m_Address: Assets/ScriptableObjects/Items/Components/Common/CommonToolkit.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 597030a878b60304394838b528f265b6
+    m_Address: Assets/ScriptableObjects/Items/Components/Common/CommonStreamGenerator.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79c9ad34c841f52458b83f5f302d08d3
+    m_Address: Assets/ScriptableObjects/Items/Equipment/CoolShoes.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b1f582c070a49df4f9bed89ab6addd05, type: 2}

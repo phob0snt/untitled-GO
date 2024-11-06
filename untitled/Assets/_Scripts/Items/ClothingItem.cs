@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class ClothingItem : Item, IUpgradable, IEquippable
 {
-    public int UpgradeLevel { get; protected set; }
+    public int UpgradeLevel { get; protected set; } = 1;
     public int StreamCapacityBonus => _currentStreamCapacityBonus;
     protected int _currentStreamCapacityBonus;
     [SerializeField, Min(0)] protected int _baseStreamCapacityBonus;
@@ -17,6 +17,22 @@ public abstract class ClothingItem : Item, IUpgradable, IEquippable
     public override void Initialize(int level, int amount)
     {
         UpgradeLevel = level;
+    }
+
+    protected virtual void CalculateStats()
+    {
+        _currentMaxHPBonus = HPWithLevel(UpgradeLevel);
+        _currentStreamCapacityBonus = StreamWithLevel(UpgradeLevel);
+    }
+
+    public int HPWithLevel(int level)
+    {
+        return (int)(_baseMaxHPBonus * Mathf.Pow(1.05f, level - 1));
+    }
+
+    public int StreamWithLevel(int level)
+    {
+        return (int)(_baseStreamCapacityBonus * Mathf.Pow(1.05f, level - 1));
     }
     public virtual void Upgrade()
     {

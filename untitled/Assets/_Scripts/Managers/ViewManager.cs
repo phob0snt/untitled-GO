@@ -13,11 +13,11 @@ public class ViewManager : MonoBehaviour
 
     public static UnityEvent<bool> OnPaused = new();
 
-    private void Start()
+    private void Awake()
     {
         foreach (var view in _views)
         {
-            view.Init();
+            view.Initialize();
             view.Hide();
         }
         if (_startView != null)

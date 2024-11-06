@@ -1,18 +1,21 @@
-using System;
-
-[Serializable]
 public class Equipment
 {
-    public InventoryItem<OuterwearItem> Outerwear;
-    public InventoryItem<PantsItem> Pants;
-    public InventoryItem<ShoesItem> Shoes;
-    public InventoryItem<RingItem> Ring;
+    public InventoryItem<OuterwearItem> Outerwear { get; set; }
 
-    public Equipment()
+    public InventoryItem<PantsItem> Pants { get; set; }
+
+    public InventoryItem<ShoesItem> Shoes { get; set; }
+
+    public InventoryItem<RingItem> Ring { get; set; }
+
+
+
+    public Equipment(InventoryItem<OuterwearItem> outerwear, InventoryItem<PantsItem> pants,
+        InventoryItem<ShoesItem> shoes, InventoryItem<RingItem> ring)
     {
-        Outerwear = new InventoryItem<OuterwearItem>();
-        Pants = new InventoryItem<PantsItem>();
-        Shoes = new InventoryItem<ShoesItem>();
-        Ring = new InventoryItem<RingItem>();
+        Outerwear = outerwear;
+        Pants = pants;
+        Shoes = shoes;
+        Ring = ring;
     }
 }

@@ -4,11 +4,11 @@ using Zenject;
 public class ManagersMainSceneInstaller : MonoInstaller
 {
     [SerializeField] private ViewManager _viewManager;
-    [SerializeField] private ProgressManager _progressManager;
+    [SerializeField] private MapManager _mapManager;
 
     public override void InstallBindings()
     {
         Container.Bind<ViewManager>().FromInstance(_viewManager).AsSingle().NonLazy();
-        Container.Bind<ProgressManager>().FromInstance(_progressManager).AsSingle().NonLazy();
+        Container.Bind<MapManager>().FromInstance(_mapManager).AsSingle().NonLazy();
     }
 }

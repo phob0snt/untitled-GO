@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Items/OuterWearItem")]
+[CreateAssetMenu(menuName = "Items/OuterwearItem")]
 public class OuterwearItem : ClothingItem
 {
     public override ItemType Type => ItemType.Outerwear;
@@ -16,11 +15,15 @@ public class OuterwearItem : ClothingItem
         base.Initialize(level, amount);
         CalculateStats();
     }
-    private void CalculateStats()
+    protected override void CalculateStats()
     {
-        _currentMaxHPBonus = (int)(_baseMaxHPBonus * Mathf.Pow(1.05f, UpgradeLevel - 1));
-        _currentStreamCapacityBonus = (int)(_baseStreamCapacityBonus * Mathf.Pow(1.05f, UpgradeLevel - 1));
-        _currentBarrierDurability = (int)(_baseBarrierDurability * Mathf.Pow(1.05f, UpgradeLevel - 1));
+        base.CalculateStats();
+        _currentBarrierDurability = BarrierWithLevel(UpgradeLevel);
+    }
+
+    public int BarrierWithLevel(int level)
+    {
+        return (int)(_baseBarrierDurability * Mathf.Pow(1.05f, level - 1));
     }
 
     public override void Upgrade()

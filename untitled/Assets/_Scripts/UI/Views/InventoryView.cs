@@ -8,15 +8,7 @@ public class InventoryView : View
     [SerializeField] private Button _itemsUpgradeButton;
     [SerializeField] private Button _storageButton;
 
-    [SerializeField] private List<Tab> _tabs;
-    public CharacterCustomizeTab CharacterCustomizeTab => _tabs[0] as CharacterCustomizeTab;
-    public override void Init()
-    {
-        foreach (var tab in _tabs)
-        {
-            tab.Initialize();
-        }
-    }
+    //public CharacterCustomizeTab CharacterCustomizeTab => _UIElements.Find(x => x.GetType() == typeof(CharacterCustomizeTab))) as Chara;
 
     private void OnEnable()
     {
@@ -34,12 +26,12 @@ public class InventoryView : View
 
     private void ShowTab(int index)
     {
-        for (int i = 0; i < _tabs.Count; i++)
+        for (int i = 0; i < _UIElements.Count; i++)
         {
             if (i == index)
-                _tabs[i].gameObject.SetActive(true);
+                _UIElements[i].gameObject.SetActive(true);
             else
-                _tabs[i].gameObject.SetActive(false);
+                _UIElements[i].gameObject.SetActive(false);
         }
     }
 }

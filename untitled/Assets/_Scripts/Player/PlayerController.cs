@@ -36,21 +36,26 @@ public class PlayerController : MonoBehaviour, IPlayerController
         _player = GetComponent<Player>();
 
         _stateMachine = new PlayerStateMachine();
+
         var locomotionState = new LocomotionState(this, _animator);
         var barrierChargeState = new BarrierChargeState(this, _animator);
         var attackState = new AttackState(this, _animator);
+        var idleState = new IdleState(this, _animator);
 
         _currEffect = Instantiate(_attackEffects[(int)AttackType], _rightHandRig);
 
-
+        _stateMachine.AddTransition(idleState, locomotionState, new FuncPredicate(() => _animator.GetFloat(_speed) > 0));
+        _stateMachine.AddTransition(locomotionState, idleState, new FuncPredicate(() => _animator.GetFloat(_speed) == 0));
+        _stateMachine.AddTransition(idleState, barrierChargeState, new FuncPredicate(() => _isSettingBarrier));
         _stateMachine.AddTransition(locomotionState, barrierChargeState, new FuncPredicate(() => _isSettingBarrier));
-        _stateMachine.AddTransition(barrierChargeState, locomotionState, new FuncPredicate(() => !_isSettingBarrier));
+        _stateMachine.AddTransition(barrierChargeState, idleState, new FuncPredicate(() => !_isSettingBarrier));
+        _stateMachine.AddTransition(idleState, attackState, new FuncPredicate(() => _isAttacking));
         _stateMachine.AddTransition(locomotionState, attackState, new FuncPredicate(() => _isAttacking));
-        _stateMachine.AddTransition(attackState, locomotionState, new FuncPredicate(() => !_isAttacking));
+        _stateMachine.AddTransition(attackState, idleState, new FuncPredicate(() => !_isAttacking));
 
 
 
-        _stateMachine.SetState(locomotionState);
+        _stateMachine.SetState(idleState);
     }
 
     private void OnEnable()
@@ -68,9 +73,10 @@ public class PlayerController : MonoBehaviour, IPlayerController
     private void Update()
     {
         _stateMachine.Update();
+        CalculateMovement();
     }
 
-    private void AnimateMovement()
+    private void CalculateMovement()
     {
         float moveIntensity = Mathf.Abs(_joystickInput.x) < Mathf.Abs(_joystickInput.y) ? Mathf.Abs(_joystickInput.y) : Mathf.Abs(_joystickInput.x);
         _animator.SetFloat(_speed, moveIntensity);
@@ -143,7 +149,6 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
         while (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
             yield return null;
-
         _isAttacking = false;
     }
 
@@ -155,7 +160,6 @@ public class PlayerController : MonoBehaviour, IPlayerController
             rotationAngle = Mathf.Atan2(_joystickInput.x, _joystickInput.y) * Mathf.Rad2Deg;
         if (!DOTween.IsTweening(transform))
             transform.DORotate(new Vector3(0, rotationAngle, 0), 0.1f);
-        AnimateMovement();
         _controller.Move(_moveDirection * _moveSpeed * Time.deltaTime);
     }
 }

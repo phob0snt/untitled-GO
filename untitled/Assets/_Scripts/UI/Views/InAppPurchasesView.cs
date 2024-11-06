@@ -6,10 +6,7 @@ public class InAppPurchasesView : View
     //[Inject] private readonly Character _char;
     //[SerializeField] private GameObject _levelRestriction;
     //[SerializeField] private int _levelForUnlock;
-    public override void Init()
-    {
-        Debug.Log("piska");
-    }
+
 
     //public override void Show()
     //{
