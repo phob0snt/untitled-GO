@@ -3,6 +3,7 @@
 **untitled GO** is a location-based game inspired by Pokémon GO, developed in Unity. It features a full 3D map of Moscow, real-time geolocation tracking, character progression, battles, and a robust client-server backend. Players explore the city, engage in battles, and upgrade their character and gear while their position syncs with real-world movement.
 
 ---
+![Gameplay Screenshot](untitled/Assets/image_2025-07-23_19-37-15.png)
 
 ## 🚀 Features
 
